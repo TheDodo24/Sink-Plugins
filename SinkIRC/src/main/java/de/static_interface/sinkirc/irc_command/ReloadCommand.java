@@ -6,8 +6,12 @@ import org.bukkit.plugin.Plugin;
 
 import de.static_interface.sinkirc.SinkIRC;
 import de.static_interface.sinklibrary.api.command.SinkCommand;
+import de.static_interface.sinklibrary.api.command.annotation.Description;
+import de.static_interface.sinklibrary.api.command.annotation.Usage;
 import de.static_interface.sinklibrary.api.configuration.Configuration;
 
+@Description("Kann den Server reloaden")
+@Usage("")
 public class ReloadCommand extends SinkCommand {
 
 	public ReloadCommand(Plugin plugin, Configuration config) {
@@ -30,7 +34,7 @@ public class ReloadCommand extends SinkCommand {
 				Bukkit.reload();
 			}
 		}, 5);
-		return false;
+		return true;
 	}
 	
 
