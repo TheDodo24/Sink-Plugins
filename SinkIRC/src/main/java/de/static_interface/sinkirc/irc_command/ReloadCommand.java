@@ -21,7 +21,7 @@ public class ReloadCommand extends SinkCommand {
 
 	@Override
 	protected boolean onExecute(CommandSender sender, String label, String[] args){
-		sender.sendMessage(sender.getName()+": Der Server wird gleich neugestartet");
+		sender.sendMessage("Der Server wird neugeladen!");
 		Bukkit.getScheduler().runTaskLater(SinkIRC.getPlugin(SinkIRC.class), new Runnable() {
 			
 			@Override
