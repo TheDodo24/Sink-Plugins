@@ -20,6 +20,7 @@ package de.static_interface.sinkirc;
 import de.static_interface.sinkirc.command.IrcKickCommand;
 import de.static_interface.sinkirc.config.SiSettings;
 import de.static_interface.sinkirc.irc_command.ExecCommand;
+import de.static_interface.sinkirc.irc_command.HelpCommand;
 import de.static_interface.sinkirc.irc_command.KickCommand;
 import de.static_interface.sinkirc.irc_command.ListCommand;
 import de.static_interface.sinkirc.irc_command.ReloadCommand;
@@ -207,7 +208,7 @@ public class SinkIRC extends JavaPlugin {
         SinkLibrary.getInstance().registerCommand("kick", new KickCommand(this, commandsConfig));
         SinkLibrary.getInstance().registerCommand("list", new ListCommand(this, commandsConfig));
         SinkLibrary.getInstance().registerCommand("set", new SetCommand(this, commandsConfig));
-        SinkLibrary.getInstance().registerCommand("srl", new ReloadCommand(this, commandsConfig));
+        SinkLibrary.getInstance().registerCommand("reload", new ReloadCommand(this, commandsConfig));
         SinkLibrary.getInstance().registerCommand("help", new HelpCommand(this, commandsConfig));
         initialized = true;
     }
