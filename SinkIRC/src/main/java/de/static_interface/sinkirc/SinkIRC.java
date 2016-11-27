@@ -203,10 +203,6 @@ public class SinkIRC extends JavaPlugin {
 
         SinkLibrary.getInstance().registerCommand("irckick", new IrcKickCommand(this, commandsConfig));
         SinkLibrary.getInstance().registerCommand("exec", new ExecCommand(this, commandsConfig));
-        SinkLibrary.getInstance().registerCommand("say", new SayCommand(this, commandsConfig));
-        SinkLibrary.getInstance().registerCommand("kick", new KickCommand(this, commandsConfig));
-        SinkLibrary.getInstance().registerCommand("list", new ListCommand(this, commandsConfig));
-        SinkLibrary.getInstance().registerCommand("set", new SetCommand(this, commandsConfig));
         SinkLibrary.getInstance().registerCommand("reload", new ReloadCommand(this, commandsConfig));
         initialized = true;
     }
