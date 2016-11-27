@@ -4,13 +4,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
-import com.sun.org.glassfish.gmbal.Description;
-
 import de.static_interface.sinkirc.SinkIRC;
 import de.static_interface.sinklibrary.api.command.SinkCommand;
 import de.static_interface.sinklibrary.api.configuration.Configuration;
 
-@Description("Ein Reload Command fuer den IRC")
 public class ReloadCommand extends SinkCommand {
 
 	public ReloadCommand(Plugin plugin, Configuration config) {
