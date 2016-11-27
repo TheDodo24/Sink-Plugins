@@ -15,14 +15,13 @@ import de.static_interface.sinklibrary.api.configuration.Configuration;
 public class ReloadCommand extends SinkCommand {
 
 	public ReloadCommand(Plugin plugin, Configuration config) {
-		super(plugin, config);
-		getCommandOptions().setIrcOpOnly(true);
-		
-	}
+        super(plugin, config);
+        getCommandOptions().setIrcOpOnly(true);
+    }
 
 	@Override
 	protected boolean onExecute(CommandSender sender, String label, String[] args){
-		if(args.length > 1) {
+		if(args.length > 0) {
 			return false;
 		}
 		
