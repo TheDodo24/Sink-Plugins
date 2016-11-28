@@ -26,7 +26,7 @@ public class HelpCommand extends SinkCommand {
 		IrcCommandSender sender = (IrcCommandSender) cs;
 		boolean isChanOp = de.static_interface.sinkirc.IrcUtil.isOp(sender.getUser().getBase());
 		
-		sender.sendMessage("     |~| IRC-Hilfe |~|     "
+		sender.sendMessage("     |~| IRC-Hilfe |~|     ");
 		sender.sendMessage("~help » Ruft diese Hilfe auf");
 		sender.sendMessage("~say [Naricht] » Chatverbindung in den Ingame-Chat");
 		sender.sendMessage("~list » Listet die Spieler Ingame auf");
