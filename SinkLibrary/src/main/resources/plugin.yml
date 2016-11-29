@@ -4,7 +4,6 @@ description: Library required for Sink Plugins. This does nothing without a plug
 author: [Trojaner, _ShadowRaven_]
 website: http://static-interface.de
 main: de.static_interface.sinklibrary.SinkLibrary
-soft-depend: [Vault]
 
 permissions:
   sinklibrary.bypassvanish:
