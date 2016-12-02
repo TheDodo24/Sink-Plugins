@@ -38,27 +38,31 @@ public class KickCommand extends IrcCommand {
 
     @Override
     public boolean onExecute(CommandSender sender, String label, String[] args) {
-        String targetPlayerName;
-        try {
-            targetPlayerName = args[0];
-        } catch (Exception ignored) {
-            return false;
+        Player toKick = Bukkit.getPlayer(args[0]);
+        if(args.length < 1) {
+        	return false;
         }
-        final Player targetPlayer = BukkitUtil.getPlayer(targetPlayerName);
-        if (targetPlayer == null) {
-            sender.sendMessage("Player \"" + targetPlayerName + "\" is not online!");
-            return true;
-        }
-
-        String reason;
-        if (args.length > 1) {
-            reason = label.replace(targetPlayerName, "");
-            reason = reason.replaceFirst("\\Qkick \\E", "").trim();
+        if(toKick != null){
+        	String msgWithArgs = "";
+        	int i = 0;
+    		for(String arg : args) {
+    			if(i == args.length) {
+    				break;
+    			}
+    			i++;
+    			if(msgWithArgs.isEmpty()) {
+    				msgWithArgs = arg;
+    				continue;
+    			}
+    			msgWithArgs = msgWithArgs + ' ' + arg;
+    		}
+    		final String finishMsgWithArgs = msgWithArgs;
+    		toKick.kickPlayer("§cDu wurdest von §4" + sender.getName() + " §caus dem §eIRC §cgekickt!\n"
+    				+ "§3Grund: §c" + finishMsgWithArgs);
+        	return true;
         } else {
-            reason = "Kicked by " + BukkitUtil.getSenderName(sender) + " from IRC";
+        	sender.sendMessage("Fehler: Der Spieler " + args[0] + " ist nicht online!");
+        	return false;
         }
-        final String formattedReason = ChatColor.translateAlternateColorCodes('&', reason);
-        Bukkit.getScheduler().runTask(getPlugin(), () -> targetPlayer.kickPlayer(formattedReason));
-        return true;
     }
 }
