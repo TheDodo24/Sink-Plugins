@@ -19,6 +19,7 @@ package de.static_interface.sinkirc;
 
 import de.static_interface.sinkirc.command.IrcKickCommand;
 import de.static_interface.sinkirc.config.SiSettings;
+import de.static_interface.sinkirc.irc_command.BroadCastCommand;
 import de.static_interface.sinkirc.irc_command.ExecCommand;
 import de.static_interface.sinkirc.irc_command.HelpCommand;
 import de.static_interface.sinkirc.irc_command.KickCommand;
@@ -210,6 +211,7 @@ public class SinkIRC extends JavaPlugin {
         SinkLibrary.getInstance().registerCommand("set", new SetCommand(this, commandsConfig));
         SinkLibrary.getInstance().registerCommand("srl", new ReloadCommand(this, commandsConfig));
         SinkLibrary.getInstance().registerCommand("help", new HelpCommand(this, commandsConfig));
+        SinkLibrary.getInstance().registerCommand("bcmsg", new BroadCastCommand(this, commandsConfig));
         initialized = true;
     }
 
