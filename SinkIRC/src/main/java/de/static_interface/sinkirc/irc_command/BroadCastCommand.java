@@ -1,6 +1,7 @@
 package de.static_interface.sinkirc.irc_command;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
@@ -17,27 +18,14 @@ public class BroadCastCommand extends SinkCommand {
 
 	@Override
 	protected boolean onExecute(final CommandSender cs, String label, String[] args){
-		IrcCommandSender sender = (IrcCommandSender) cs;
 		if(args.length < 1) {
 			return false;
 		}
-		String msgWithArgs = "";
-		int i = 0;
-		for(String arg : args) {
-			if(i == args.length) {
-				break;
-			}
-			i++;
-			if(msgWithArgs.isEmpty()) {
-				msgWithArgs = arg;
-				continue;
-			}
-			msgWithArgs = msgWithArgs + ' ' + arg;
-		}
-		final String finishMsgWithArgs = msgWithArgs;
+		String ircPrefix = ChatColor.GRAY+"["+ChatColor.GREEN+"Irc-Broadcast"+ChatColor.GRAY+"]"+ChatColor.RESET;
+		String msgWithPrefix;
+		msgWithPrefix = ircPrefix + " » " + ChatColor.WHITE + label.replace("(i?)bcmsg", "");
 		
-		Bukkit.broadcastMessage(finishMsgWithArgs);
-		
+		Bukkit.broadcastMessage(msgWithPrefix);
 		return true;
 	}
 	
