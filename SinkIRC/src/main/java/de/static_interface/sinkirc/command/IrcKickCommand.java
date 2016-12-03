@@ -17,8 +17,15 @@
 
 package de.static_interface.sinkirc.command;
 
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+import org.pircbotx.Channel;
+
 import de.static_interface.sinkirc.IrcUtil;
 import de.static_interface.sinkirc.SinkIRC;
+import de.static_interface.sinkirc.irc_command.IrcCommand;
 import de.static_interface.sinklibrary.SinkLibrary;
 import de.static_interface.sinklibrary.api.command.SinkCommand;
 import de.static_interface.sinklibrary.api.command.annotation.Aliases;
@@ -26,11 +33,8 @@ import de.static_interface.sinklibrary.api.command.annotation.DefaultPermission;
 import de.static_interface.sinklibrary.api.command.annotation.Description;
 import de.static_interface.sinklibrary.api.command.annotation.Usage;
 import de.static_interface.sinklibrary.api.configuration.Configuration;
+import de.static_interface.sinklibrary.api.sender.IrcCommandSender;
 import de.static_interface.sinklibrary.api.user.SinkUser;
-import de.static_interface.sinklibrary.util.StringUtil;
-import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.Plugin;
-import org.pircbotx.Channel;
 
 @DefaultPermission
 @Description("Kicks an user from IRC")
@@ -43,8 +47,6 @@ public class IrcKickCommand extends SinkCommand {
         getTabCompleterOptions().setIncludeIngameUsers(false);
         getTabCompleterOptions().setIncludeIrcUsers(true);
         getTabCompleterOptions().setIncludeSuffix(false);
-        getCommandOptions().setMinRequiredArgs(1);
-        getCommandOptions().setIrcOpOnly(true);
     }
 
     @Override
@@ -52,7 +54,6 @@ public class IrcKickCommand extends SinkCommand {
     	if(args.length < 1) {
     		return false;
     	}
-    	
     	String msgWithArgs = "";
     	int i = 0;
 		for(String arg : args) {
@@ -69,12 +70,32 @@ public class IrcKickCommand extends SinkCommand {
 		final String finishMsgWithArgs = msgWithArgs;
 		
         SinkUser user = SinkLibrary.getInstance().getUser((Object) sender);
+        
+        if(sender instanceof Player) {
+        	Player p = (Player) sender;
+        	if(p.hasPermission("sinkirc.kick")) {
+        		String target = args[0];
 
-        String target = args[0];
+                for (Channel channel : SinkIRC.getInstance().getJoinedChannels()) {
+                    channel.send().kick(IrcUtil.getUser(target), finishMsgWithArgs);
+                }
+                return true;
+        	} else {
+        		p.sendMessage("§4Fehler: §cDu hast keine Rechte!");
+        	}
+        } else if(sender instanceof IrcCommandSender) {
+        	getCommandOptions().setIrcOpOnly(true);
+        	String target = args[0];
 
-        for (Channel channel : SinkIRC.getInstance().getJoinedChannels()) {
-            channel.send().kick(IrcUtil.getUser(target), finishMsgWithArgs);
+            for (Channel channel : SinkIRC.getInstance().getJoinedChannels()) {
+                channel.send().kick(IrcUtil.getUser(target), finishMsgWithArgs);
+            }
+            return true;
+        } else {
+        	sender.sendMessage("§4Fehler: §cDu musst ein IRC-Mitglied oder ein Spieler sein!");
+        	return false;
         }
-        return true;
+        
+        return false;
     }
 }
