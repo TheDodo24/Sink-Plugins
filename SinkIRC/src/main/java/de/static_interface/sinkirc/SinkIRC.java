@@ -17,6 +17,28 @@
 
 package de.static_interface.sinkirc;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.pircbotx.Channel;
+import org.pircbotx.Configuration;
+import org.pircbotx.PircBotX;
+import org.pircbotx.exception.IrcException;
+import org.pircbotx.hooks.WaitForQueue;
+import org.pircbotx.hooks.events.JoinEvent;
+import org.pircbotx.hooks.events.PrivateMessageEvent;
+
 import de.static_interface.sinkirc.command.IrcKickCommand;
 import de.static_interface.sinkirc.config.SiSettings;
 import de.static_interface.sinkirc.irc_command.BroadCastCommand;
@@ -33,27 +55,6 @@ import de.static_interface.sinkirc.stream.IrcMessageStream;
 import de.static_interface.sinklibrary.SinkLibrary;
 import de.static_interface.sinklibrary.util.Debug;
 import de.static_interface.sinklibrary.util.StringUtil;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.pircbotx.Channel;
-import org.pircbotx.Configuration;
-import org.pircbotx.PircBotX;
-import org.pircbotx.exception.IrcException;
-import org.pircbotx.hooks.WaitForQueue;
-import org.pircbotx.hooks.events.JoinEvent;
-import org.pircbotx.hooks.events.PrivateMessageEvent;
-
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.SocketException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
 
 public class SinkIRC extends JavaPlugin {
 
