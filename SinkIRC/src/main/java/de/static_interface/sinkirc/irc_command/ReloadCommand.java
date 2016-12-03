@@ -10,31 +10,32 @@ import de.static_interface.sinklibrary.api.command.annotation.Usage;
 import de.static_interface.sinklibrary.api.configuration.Configuration;
 import de.static_interface.sinklibrary.util.BukkitUtil;
 
+@Description("Kann den Server reloaden")
 @Usage("")
-@Description("restartet den Ingameserver")
-public class RestartCommand extends IrcCommand {
+public class ReloadCommand extends IrcCommand {
 
-	public RestartCommand(Plugin plugin, Configuration config) {
-		super(plugin, config);
-		getCommandOptions().setIrcOpOnly(true);
-	}
+	public ReloadCommand(Plugin plugin, Configuration config) {
+        super(plugin, config);
+        getCommandOptions().setIrcOpOnly(true);
+    }
 
 	@Override
-	protected boolean onExecute(CommandSender sender, String label, String[] args) {
+	protected boolean onExecute(CommandSender sender, String label, String[] args){
 		if(args.length > 0) {
 			return false;
 		}
 		
-		sender.sendMessage("Der Server wird gleich neugestartet!");
-		BukkitUtil.broadcastMessage("§4Achtung: §cDer Server wird gleich neugestartet!");
+		sender.sendMessage("Der Server wird gleich neugeladen");
+		BukkitUtil.broadcastMessage("§4Achtung: §cDer Server wird gleich neugeladen!");
 		Bukkit.getScheduler().runTaskLater(SinkIRC.getPlugin(SinkIRC.class), new Runnable() {
 			
 			@Override
 			public void run() {
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "restart");
+				Bukkit.reload();
 			}
-		}, 100);
+		}, 20);
 		return true;
 	}
+	
 
 }
