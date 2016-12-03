@@ -25,7 +25,7 @@ public class ReloadCommand extends IrcCommand {
 			return false;
 		}
 		
-		sender.sendMessage(sender.getName()+": Der Server wird gleich neugeladen");
+		sender.sendMessage("Der Server wird gleich neugeladen");
 		BukkitUtil.broadcastMessage("§4Achtung: §cDer Server wird gleich neugeladen!");
 		Bukkit.getScheduler().runTaskLater(SinkIRC.getPlugin(SinkIRC.class), new Runnable() {
 			
