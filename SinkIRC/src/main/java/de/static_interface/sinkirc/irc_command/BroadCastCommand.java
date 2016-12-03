@@ -1,6 +1,5 @@
 package de.static_interface.sinkirc.irc_command;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
@@ -9,7 +8,7 @@ import de.static_interface.sinklibrary.api.command.SinkCommand;
 import de.static_interface.sinklibrary.api.command.annotation.Description;
 import de.static_interface.sinklibrary.api.command.annotation.Usage;
 import de.static_interface.sinklibrary.api.configuration.Configuration;
-import de.static_interface.sinklibrary.api.sender.IrcCommandSender;
+import de.static_interface.sinklibrary.util.BukkitUtil;
 
 @Description("broadcastet eine Naricht in den Ingame-Chat")
 @Usage("<message>")
@@ -29,7 +28,7 @@ public class BroadCastCommand extends SinkCommand {
 		String msgWithPrefix;
 		msgWithPrefix = ircPrefix + " » " + ChatColor.WHITE + label.replace("(i?)bcmsg", "");
 		
-		Bukkit.broadcastMessage(msgWithPrefix);
+		BukkitUtil.broadcastMessage(msgWithPrefix);
 		return true;
 	}
 	
