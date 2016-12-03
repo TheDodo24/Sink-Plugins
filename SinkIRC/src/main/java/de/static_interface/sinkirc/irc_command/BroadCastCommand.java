@@ -6,9 +6,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
 import de.static_interface.sinklibrary.api.command.SinkCommand;
+import de.static_interface.sinklibrary.api.command.annotation.Description;
+import de.static_interface.sinklibrary.api.command.annotation.Usage;
 import de.static_interface.sinklibrary.api.configuration.Configuration;
 import de.static_interface.sinklibrary.api.sender.IrcCommandSender;
 
+@Description("broadcastet eine Naricht in den Ingame-Chat")
+@Usage("<message>")
 public class BroadCastCommand extends SinkCommand {
 
 	public BroadCastCommand(Plugin plugin, Configuration config) {
