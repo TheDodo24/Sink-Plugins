@@ -17,7 +17,7 @@
 
 package de.static_interface.sinkirc.command;
 
-import org.bukkit.Bukkit;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -25,7 +25,6 @@ import org.pircbotx.Channel;
 
 import de.static_interface.sinkirc.IrcUtil;
 import de.static_interface.sinkirc.SinkIRC;
-import de.static_interface.sinkirc.irc_command.IrcCommand;
 import de.static_interface.sinklibrary.SinkLibrary;
 import de.static_interface.sinklibrary.api.command.SinkCommand;
 import de.static_interface.sinklibrary.api.command.annotation.Aliases;
@@ -54,20 +53,11 @@ public class IrcKickCommand extends SinkCommand {
     	if(args.length < 1) {
     		return false;
     	}
-    	String msgWithArgs = "";
-    	int i = 0;
-		for(String arg : args) {
-			if(i == args.length) {
-				break;
-			}
-			i++;
-			if(msgWithArgs.isEmpty()) {
-				msgWithArgs = arg;
-				continue;
-			}
-			msgWithArgs = msgWithArgs + ' ' + arg;
-		}
-		final String finishMsgWithArgs = msgWithArgs;
+    	String text = "";
+    	for(int i = 1; i < args.length; i++)  {
+    		text = text + " " + args[i];
+    	}
+    	text = text.replaceFirst(" ", "");
 		
         SinkUser user = SinkLibrary.getInstance().getUser((Object) sender);
         
@@ -77,7 +67,7 @@ public class IrcKickCommand extends SinkCommand {
         		String target = args[0];
 
                 for (Channel channel : SinkIRC.getInstance().getJoinedChannels()) {
-                    channel.send().kick(IrcUtil.getUser(target), finishMsgWithArgs);
+                    channel.send().kick(IrcUtil.getUser(target), text);
                 }
                 return true;
         	} else {
@@ -89,7 +79,7 @@ public class IrcKickCommand extends SinkCommand {
         	String target = args[0];
 
             for (Channel channel : SinkIRC.getInstance().getJoinedChannels()) {
-                channel.send().kick(IrcUtil.getUser(target), finishMsgWithArgs);
+                channel.send().kick(IrcUtil.getUser(target), text);
             }
             return true;
         } else {
