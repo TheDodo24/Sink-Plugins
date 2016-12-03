@@ -82,6 +82,7 @@ public class IrcKickCommand extends SinkCommand {
                 return true;
         	} else {
         		p.sendMessage("§4Fehler: §cDu hast keine Rechte!");
+        		return false;
         	}
         } else if(sender instanceof IrcCommandSender) {
         	getCommandOptions().setIrcOpOnly(true);
@@ -95,7 +96,5 @@ public class IrcKickCommand extends SinkCommand {
         	sender.sendMessage("§4Fehler: §cDu musst ein IRC-Mitglied oder ein Spieler sein!");
         	return false;
         }
-        
-        return false;
     }
 }
