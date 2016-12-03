@@ -5,14 +5,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
 import de.static_interface.sinkirc.SinkIRC;
-import de.static_interface.sinklibrary.api.command.SinkCommand;
 import de.static_interface.sinklibrary.api.command.annotation.Description;
 import de.static_interface.sinklibrary.api.command.annotation.Usage;
 import de.static_interface.sinklibrary.api.configuration.Configuration;
+import de.static_interface.sinklibrary.util.BukkitUtil;
 
 @Description("Kann den Server reloaden")
 @Usage("")
-public class ReloadCommand extends SinkCommand {
+public class ReloadCommand extends IrcCommand {
 
 	public ReloadCommand(Plugin plugin, Configuration config) {
         super(plugin, config);
@@ -21,7 +21,12 @@ public class ReloadCommand extends SinkCommand {
 
 	@Override
 	protected boolean onExecute(CommandSender sender, String label, String[] args){
-		sender.sendMessage("Der Server wird neugeladen!");
+		if(args.length > 0) {
+			return false;
+		}
+		
+		sender.sendMessage(sender.getName()+": Der Server wird gleich neugeladen");
+		BukkitUtil.broadcastMessage("§4Achtung: §cDer Server wird gleich neugeladen!");
 		Bukkit.getScheduler().runTaskLater(SinkIRC.getPlugin(SinkIRC.class), new Runnable() {
 			
 			@Override
