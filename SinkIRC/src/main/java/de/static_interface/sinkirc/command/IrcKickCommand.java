@@ -35,7 +35,7 @@ import org.pircbotx.Channel;
 @DefaultPermission
 @Description("Kicks an user from IRC")
 @Aliases("ikick")
-@Usage("<player>")
+@Usage("<player> <reason>")
 public class IrcKickCommand extends SinkCommand {
 
     public IrcKickCommand(Plugin plugin, Configuration config) {
@@ -49,18 +49,31 @@ public class IrcKickCommand extends SinkCommand {
 
     @Override
     public boolean onExecute(CommandSender sender, String label, String[] args) {
+    	if(args.length < 1) {
+    		return false;
+    	}
+    	
+    	String msgWithArgs = "";
+    	int i = 0;
+		for(String arg : args) {
+			if(i == args.length) {
+				break;
+			}
+			i++;
+			if(msgWithArgs.isEmpty()) {
+				msgWithArgs = arg;
+				continue;
+			}
+			msgWithArgs = msgWithArgs + ' ' + arg;
+		}
+		final String finishMsgWithArgs = msgWithArgs;
+		
         SinkUser user = SinkLibrary.getInstance().getUser((Object) sender);
-
-        String reason = StringUtil.formatArrayToString(args, " ", 1);
 
         String target = args[0];
 
-        if (StringUtil.isEmptyOrNull(reason)) {
-            reason = "Kicked by " + user.getDisplayName();
-        }
-
         for (Channel channel : SinkIRC.getInstance().getJoinedChannels()) {
-            channel.send().kick(IrcUtil.getUser(target), reason);
+            channel.send().kick(IrcUtil.getUser(target), finishMsgWithArgs);
         }
         return true;
     }
