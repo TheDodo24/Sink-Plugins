@@ -35,7 +35,8 @@ public class HelpCommand extends IrcCommand {
 						+ "~set [Variable] [Zustand] » Setzt eine Variable auf den Zustand\n"
 						+ "~srl » Reloaded den Ingame-Server\n"
 						+ "~bcmsg [Naricht] » Broadcastet die Naricht in den Ingamechat\n"
-						+ "~ikick [Spieler] [Grund] » Kickt einen Spieler auf dem IRC-Channel mit dem Grund");
+						+ "~ikick [Spieler] [Grund] » Kickt einen Spieler auf dem IRC-Channel mit dem Grund\n"
+						+ "~restart » Startet den Ingameserver neu!");
 			}
 		
 		return true;
