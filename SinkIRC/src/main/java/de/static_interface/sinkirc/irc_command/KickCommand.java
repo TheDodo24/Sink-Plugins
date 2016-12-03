@@ -43,22 +43,14 @@ public class KickCommand extends IrcCommand {
         }
         Player toKick = Bukkit.getPlayer(args[0]);
         if(toKick != null){
-        	String msgWithArgs = "";
-        	int i = 0;
-    		for(String arg : args) {
-    			if(i == args.length) {
-    				break;
-    			}
-    			i++;
-    			if(msgWithArgs.isEmpty()) {
-    				msgWithArgs = arg;
-    				continue;
-    			}
-    			msgWithArgs = msgWithArgs + ' ' + arg;
-    		}
-    		final String finishMsgWithArgs = msgWithArgs;
+        	String text = "";
+        	for(int i = 1; i < args.length; i++)  {
+        		text = text + " " + args[i];
+        	}
+        	text = text.replaceFirst(" ", "");
+        	text = text.replace("&", "§");
     		toKick.kickPlayer("§cDu wurdest von §4" + sender.getName() + " §caus dem §eIRC §cgekickt!\n"
-    				+ "§3Grund: §c" + finishMsgWithArgs);
+    				+ "§3Grund: " + text);
         	return true;
         } else {
         	sender.sendMessage("Fehler: Der Spieler " + args[0] + " ist nicht online!");
