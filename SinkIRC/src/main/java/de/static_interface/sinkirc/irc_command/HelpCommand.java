@@ -36,7 +36,7 @@ public class HelpCommand extends IrcCommand {
 				sender.sendMessage("~srl » Reloaded den Ingame-Server");
 				sender.sendMessage("~bcmsg [Naricht] » Broadcastet die Naricht in den Ingamechat");
 				sender.sendMessage("~ikick [Spieler] [Grund] » Kickt einen Spieler auf dem IRC-Channel mit dem Grund");
-				sender.sendMessage("~restart » Startet den Ingameserver neu!");
+				sender.sendMessage("~srestart » Startet den Ingameserver neu!");
 			}
 		
 		return true;
