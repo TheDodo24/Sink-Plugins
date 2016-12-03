@@ -38,10 +38,10 @@ public class KickCommand extends IrcCommand {
 
     @Override
     public boolean onExecute(CommandSender sender, String label, String[] args) {
-        Player toKick = Bukkit.getPlayer(args[0]);
         if(args.length < 1) {
         	return false;
         }
+        Player toKick = Bukkit.getPlayer(args[0]);
         if(toKick != null){
         	String msgWithArgs = "";
         	int i = 0;
