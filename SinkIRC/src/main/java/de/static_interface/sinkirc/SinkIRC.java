@@ -214,7 +214,7 @@ public class SinkIRC extends JavaPlugin {
         SinkLibrary.getInstance().registerCommand("srl", new ReloadCommand(this, commandsConfig));
         SinkLibrary.getInstance().registerCommand("help", new HelpCommand(this, commandsConfig));
         SinkLibrary.getInstance().registerCommand("bcmsg", new BroadCastCommand(this, commandsConfig));
-        SinkLibrary.getInstance().registerCommand("restart", new RestartCommand(this, commandsConfig));
+        SinkLibrary.getInstance().registerCommand("srestart", new RestartCommand(this, commandsConfig));
         initialized = true;
     }
 
