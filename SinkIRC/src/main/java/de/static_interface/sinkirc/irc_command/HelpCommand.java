@@ -25,18 +25,18 @@ public class HelpCommand extends IrcCommand {
 		IrcCommandSender sender = (IrcCommandSender) cs;
 		boolean isChanOp = de.static_interface.sinkirc.IrcUtil.isOp(sender.getUser().getBase());
 		
-			sender.sendMessage("     |~| IRC-Hilfe |~|     \n"
-					+ "~help » Ruft diese Hilfe auf\n"
-					+ "~say [Naricht] » Chatverbindung in den Ingame-Chat\n"
-					+ "~list » Listet die Spieler Ingame auf");
+			sender.sendMessage("     |~| IRC-Hilfe |~|     ");
+			sender.sendMessage("~help » Ruft diese Hilfe auf");
+			sender.sendMessage("~say [Naricht] » Chatverbindung in den Ingame-Chat");
+			sender.sendMessage("~list » Listet die Spieler Ingame auf");
 			if(isChanOp) {
-				sender.sendMessage("~exec [Kommand] » Führt einen Kommando als Konsole aus\n"
-						+ "~kick [Spieler] [Grund] » Kickt einen Ingame-Spieler mit dem Grund\n"
-						+ "~set [Variable] [Zustand] » Setzt eine Variable auf den Zustand\n"
-						+ "~srl » Reloaded den Ingame-Server\n"
-						+ "~bcmsg [Naricht] » Broadcastet die Naricht in den Ingamechat\n"
-						+ "~ikick [Spieler] [Grund] » Kickt einen Spieler auf dem IRC-Channel mit dem Grund\n"
-						+ "~restart » Startet den Ingameserver neu!");
+				sender.sendMessage("~exec [Kommand] » Führt einen Kommando als Konsole aus");
+				sender.sendMessage("~kick [Spieler] [Grund] » Kickt einen Ingame-Spieler mit dem Grund");
+				sender.sendMessage("~set [Variable] [Zustand] » Setzt eine Variable auf den Zustand");
+				sender.sendMessage("~srl » Reloaded den Ingame-Server");
+				sender.sendMessage("~bcmsg [Naricht] » Broadcastet die Naricht in den Ingamechat");
+				sender.sendMessage("~ikick [Spieler] [Grund] » Kickt einen Spieler auf dem IRC-Channel mit dem Grund");
+				sender.sendMessage("~restart » Startet den Ingameserver neu!");
 			}
 		
 		return true;
