@@ -26,7 +26,7 @@ public class BroadCastCommand extends SinkCommand {
 		}
 		String ircPrefix = ChatColor.GRAY+"["+ChatColor.GREEN+"Irc-Broadcast"+ChatColor.GRAY+"]"+ChatColor.RESET;
 		String msgWithPrefix;
-		msgWithPrefix = ircPrefix + " » " + ChatColor.WHITE + label.replace("(i?)bcmsg", "");
+		msgWithPrefix = ircPrefix + " » " + ChatColor.GRAY + label.replace("(i?)bcmsg", "");
 		
 		BukkitUtil.broadcastMessage(msgWithPrefix);
 		return true;
